@@ -1,5 +1,9 @@
-# Mustache PHP JS
+# Mustache PHP JS - For WordPress
 *Easy sharing of mustache templates between php and js for logic-less templates.*
+
+This WP plugin adds mustache as a template engine.
+
+More info on [mustache.github.io](http://mustache.github.io) and [sitepoint.com](http://www.sitepoint.com/sharing-templates-between-php-and-javascript)
 
 ##PHP
 This is an example of how it can look in your html template file.
@@ -31,6 +35,7 @@ You probably want to get your template data from a function if your going to use
 ```
 function getTmplData()
 {
+    // Load your data and return a nicely formatted array
     $tmplData = [
         'title' => 'First post',
         'permalink' => 'http://your-site.com/first-post',
