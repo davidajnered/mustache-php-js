@@ -28,16 +28,6 @@ class MustachePhpJs
     private $template;
 
     /**
-     * @var string
-     */
-    private $partialName;
-
-    /**
-     * @var string
-     */
-    private $partial;
-
-    /**
      * Singleton.
      *
      * @return PerfectExcerpt
@@ -118,9 +108,7 @@ class MustachePhpJs
         // Disable lock and enable rendering of another template
         $this->capturing = false;
 
-        $output = $this->engine->render($this->template, $templateData);
-
-        echo $output;
+        echo $this->engine->render($this->template, $templateData);
     }
 
     /**
@@ -138,6 +126,7 @@ class MustachePhpJs
         // Set partials in mustache engine
         $this->engine->setPartials($partial);
 
+        // For chaining
         return $this;
     }
 }
