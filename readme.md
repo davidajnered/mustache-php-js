@@ -1,5 +1,5 @@
 # Mustache PHP JS - For WordPress
-*Easy sharing of mustache templates between php and js for logic-less templates.*
+*Easy sharing of logic-less mustache templates between php and js.*
 
 This WP plugin adds mustache as a template engine.
 
