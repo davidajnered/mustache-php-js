@@ -23,13 +23,13 @@ This is an example of how it can look in your html template file.
                     <div class="excerpt">{{excerpt}}</div>
                 </a>
             </div>
-        <?php mustache()->render('showMustacheTmpl', getTmplData()); ?>
+        <?php mustache()->render('postTmpl', getTmplData()); ?>
     </div>
     <?php mustache()->getScript(); ?>
-    <a id="load" href="#">Load more posts</a>
+    <a class="load" href="#">Load more posts</a>
 </div>
 ```
-You can call the mustache() function as soon as the plugin is active. This will return the mustache object for you. Call the ```start()``` function at the top of the code that you want to be a part of your template. This will start the PHP output buffer and save all code within your template to a string. At the end of your template you call ```render()```. This will stop the output buffer as well as output the template with the passed template data.
+You can call the mustache() function as soon as the plugin is active. This will return the mustache object for you. Call the ```capture()``` function at the top of the code that you want to be a part of your template. This will start the PHP output buffer and save all code within your template to a string. At the end of your template you call ```render()```. This will stop the output buffer as well as output the template with the passed template data.
 
 You probably want to get your template data from a function if your going to use mustache.js since you will be loading your data with ajax. If you're not going to use mustache.js there's not much more to it.
 ```
@@ -67,7 +67,38 @@ $('a#load').click(function(e) {
     };
 
     var output = Mustache.render($('#showMustacheTmpl').html(), tmplData);
-    $('.mustache-wrapper .feed').append(output);
+    $('.wrapper').append(output);
 });
 ```
-**Important:** plugin has not been tested with partials yet.
+
+## Partials
+Define your partials like this...
+```
+<?php mustache()->capture(); ?>
+    {{#posts}}
+        <div class="col-sm-3">
+            <a href="{{permalink}}">
+                {{{post_thumbnail}}}
+                <h3>{{post_title}}</h3>
+                <small>{{date}}</small>
+                <div>{{excerpt}}</div>
+            </a>
+        </div>
+    {{/post}}
+<?php mustache()->setPartial('postPartial')->getScript(); ?>
+```
+... and use it like this
+```
+<?php mustache()->capture(); ?>
+    {{>post_partial}}
+<?php mustache()->render('postTmpl', getTmplData()); ?>
+```
+This will generate the same output as the first example, but now you can reuse your *postPartial*. An example using partials in javascript could look something like this.
+```
+var template = $('#postTmpl').html();
+var partials = {postPartial: $('#postPartial').html()};
+$.post(ajax.url, data, function(response) {
+    var output = Mustache.render(template, response, partials);
+    $('.wrapper').append(output);
+});
+```
