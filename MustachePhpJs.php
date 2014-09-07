@@ -15,7 +15,7 @@ class MustachePhpJs
     /**
      * @var bool
      */
-    private $started;
+    private $capturing;
 
     /**
      * @var string
@@ -26,6 +26,16 @@ class MustachePhpJs
      * @var string
      */
     private $template;
+
+    /**
+     * @var string
+     */
+    private $partialName;
+
+    /**
+     * @var string
+     */
+    private $partial;
 
     /**
      * Singleton.
@@ -75,12 +85,12 @@ class MustachePhpJs
      */
     public function capture()
     {
-        if ($this->started) {
+        if ($this->capturing) {
             trigger_error('mustache output buffer already initialized');
             return false;
         }
 
-        $this->started = true;
+        $this->capturing = true;
 
         ob_start();
     }
@@ -106,8 +116,28 @@ class MustachePhpJs
         $this->template = ob_get_clean();
 
         // Disable lock and enable rendering of another template
-        $this->started = false;
+        $this->capturing = false;
 
-        echo $this->engine->render($this->template, $templateData);
+        $output = $this->engine->render($this->template, $templateData);
+
+        echo $output;
+    }
+
+    /**
+     * Stop output buffer and save partial
+     */
+    public function setPartial($templateName)
+    {
+        $this->templateName = $templateName;
+        $this->template = ob_get_clean();
+        $partial[$templateName] = $this->template;
+
+        // Disable lock and enable rendering of another template
+        $this->capturing = false;
+
+        // Set partials in mustache engine
+        $this->engine->setPartials($partial);
+
+        return $this;
     }
 }
