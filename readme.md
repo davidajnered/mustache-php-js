@@ -1,7 +1,7 @@
 # Mustache PHP JS - For WordPress
 *Easy sharing of logic-less mustache templates between php and js.*
 
-Adds mustache as a template engine to WordPress.
+Adds mustache as PHP and JavaScript template engine to WordPress.
 
 More info about mustache on [mustache.github.io](http://mustache.github.io) and [sitepoint.com](http://www.sitepoint.com/sharing-templates-between-php-and-javascript)
 
@@ -66,7 +66,7 @@ $('a#load').click(function(e) {
         'excerpt' => 'This... is not going to happen',
     };
 
-    var output = Mustache.render($('#showMustacheTmpl').html(), tmplData);
+    var output = Mustache.render($('#postTmpl').html(), tmplData);
     $('.wrapper').append(output);
 });
 ```

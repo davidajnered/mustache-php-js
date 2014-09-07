@@ -1,18 +1,18 @@
 === Plugin Name ===
 Contributors: davidajnered
 Donate link: http://davidajnered.com
-Tags: mustache, handlebars, templating, template, template engine, the loop, loop
+Tags: mustache, handlebars, templating, template, template engine, the loop, loop, php template, php templating, js template, js templating, engine, twig
 Requires at least: 3.0
 Tested up to: 3.9
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Adds mustache as a template engine to WordPress.
+Adds mustache as PHP and JavaScript template engine to WordPress.
 
 == Description ==
 
-Adds mustache as a template engine to WordPress. More info about mustache on [mustache.github.io](http://mustache.github.io) and [sitepoint.com](http://www.sitepoint.com/sharing-templates-between-php-and-javascript).
+Adds mustache as PHP and JavaScript template engine to WordPress. More info about mustache on [mustache.github.io](http://mustache.github.io) and [sitepoint.com](http://www.sitepoint.com/sharing-templates-between-php-and-javascript).
 
 == Installation ==
 
@@ -77,7 +77,7 @@ $('a#load').click(function(e) {
         'excerpt' => 'This... is not going to happen',
     };
 
-    var output = Mustache.render($('#showMustacheTmpl').html(), tmplData);
+    var output = Mustache.render($('#postTmpl').html(), tmplData);
     $('.wrapper').append(output);
 });
 `
