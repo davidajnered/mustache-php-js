@@ -14,7 +14,7 @@ This is an example of how it can look in your html template file.
         <h3 class="panel-title">Mustache Example</h3>
     </div>
     <div class="panel-body feed">
-        <?php mustache()->start(); ?>
+        <?php mustache()->capture(); ?>
             <div class="col-sm-3">
                 <a href="{{permalink}}">
                     <img src="{{image}}">

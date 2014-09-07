@@ -73,7 +73,7 @@ class MustachePhpJs
     /**
      * Start buffering template.
      */
-    public function start()
+    public function capture()
     {
         if ($this->started) {
             trigger_error('mustache output buffer already initialized');
