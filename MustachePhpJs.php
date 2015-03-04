@@ -160,7 +160,7 @@ class MustachePhpJs
      * @param string $templateFile
      * @param array $templateData
      */
-    public function renderFromFile($templateFile, $templateData)
+    public function renderFile($templateFile, $templateData)
     {
         if (file_exists($templateFile)) {
             // Load template from file
